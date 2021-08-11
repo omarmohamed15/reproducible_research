@@ -224,15 +224,15 @@ def train_real(target=None,source=None,env=None):
 
   def correlation_coefficient_loss(y_true, y_pred):
     #optional
-    #x = y_true - y_pred
-    #y = y_pred
-    #mx = K.mean(x)
-    #my = K.mean(y)
-    #xm, ym = x-mx, y-my
-    #r_num = K.sum(tf.multiply(xm,ym))
-    #r_den = K.sqrt(tf.multiply(K.sum(K.square(xm)), K.sum(K.square(ym))))
-    #r = r_num / r_den
-    #r =  corr1 - (K.maximum(K.minimum(r, 1.0), -1.0))
+    x = y_true - y_pred
+    y = y_pred
+    mx = K.mean(x)
+    my = K.mean(y)
+    xm, ym = x-mx, y-my
+    r_num = K.sum(tf.multiply(xm,ym))
+    r_den = K.sqrt(tf.multiply(K.sum(K.square(xm)), K.sum(K.square(ym))))
+    r = r_num / r_den
+    r =  corr1 - (K.maximum(K.minimum(r, 1.0), -1.0))
     
     #1
     x1 = y_true
@@ -257,7 +257,7 @@ def train_real(target=None,source=None,env=None):
     r2 = r_num2 / r_den2
     r2 =    corr3 - (K.maximum(K.minimum(r2, 1.0), -1.0))
     '''
-    return   K.mean(K.square(y_true - y_pred)) + r1
+    return   K.mean(K.square(y_true - y_pred)) + r
     
     
   autoencoder = Model(input_img, decoded)
